@@ -29,17 +29,46 @@ canvas.height = 800;
 // ctx.fillStyle = 'red';
 // ctx.fill();
 
-ctx.fillRect(200, 200, 50, 200);
-ctx.fillRect(600, 200, 50, 200);
-ctx.strokeRect(380, 300, 100, 100);
-ctx.arc(400, 350, 10, 0, 2 * Math.PI);
-ctx.fill();
+// 집 만들기
+// ctx.fillRect(200, 200, 50, 200);
+// ctx.fillRect(600, 200, 50, 200);
+// ctx.strokeRect(380, 300, 100, 100);
+// ctx.arc(400, 350, 10, 0, 2 * Math.PI);
+// ctx.fill();
 
-ctx.beginPath();
-ctx.moveTo(150, 200);
-ctx.lineTo(700, 200);
-ctx.lineTo(420, 50);
-ctx.lineTo(150, 200);
-ctx.fillStyle = 'red';
-ctx.fill();
+// ctx.beginPath();
+// ctx.moveTo(150, 200);
+// ctx.lineTo(700, 200);
+// ctx.lineTo(420, 50);
+// ctx.lineTo(150, 200);
+// ctx.fillStyle = 'red';
+// ctx.fill();
 
+let isPainting = false;
+
+function onMove(event){ 
+  if(isPainting){
+    ctx.lineTo(event.offsetX, event.offsetY);
+    ctx.stroke();
+    return;
+  }
+  ctx.moveTo(event.offsetX, event.offsetY);
+  // if(isPainting){
+  //   console.log(event.offsetX, event.offsetY);
+  //   ctx.lineTo(event.offsetX, event.offsetY);  
+  //   ctx.stroke();
+  // }
+  // ctx.moveTo(event.offsetX, event.offsetY);
+}
+
+function onMouseDown(){
+  isPainting = true;
+}
+
+function onMouseUp(){
+  isPainting = false;
+}
+canvas.addEventListener("mousemove", onMove);
+canvas.addEventListener("mousedown", onMouseDown);
+canvas.addEventListener("mouseup", onMouseUp);
+canvas.addEventListener("mouseleave", onMouseUp);
