@@ -8,4 +8,25 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+.option{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* flex-direction: column;   */
+}
+.option > input{
+  margin: 15px;
+}
+
+.option .colors{
+  display: flex;
+}
+.option .colors .color-option{
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;  
+  cursor: pointer;
 }
